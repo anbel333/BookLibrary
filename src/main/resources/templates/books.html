@@ -32,6 +32,13 @@
                         <button type="submit">Удалить</button>
                     </form>
                 </div>
+                <div sec:authorize="hasRole('USER')">
+                    <form th:action="@{/addBookToUsers}" method="post">
+                        <input type="hidden" name="userId" th:value="${#authentication.principal.id}" />
+                        <input type="hidden" name="book" th:value="${book.id}" />
+                        <button type="submit">Добавить книгу в личный кабинет</button>
+                    </form>
+                </div>
             </td>
         </tr>
     </tbody>
