@@ -13,6 +13,7 @@ public class Book {
     private String title;
     private String author;
     private double rating;
+    private boolean takenByUser;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users users;

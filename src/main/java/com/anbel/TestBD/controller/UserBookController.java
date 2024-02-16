@@ -33,6 +33,7 @@ public class UserBookController {
     public String addBookToUsers(Long userId, Book book) {
         Users users = usersService.getUsersById(userId);
         book.setUsers(users);
+        book.setTakenByUser(true);
         bookService.saveBook(book);
         return "redirect:/userAccount?userId=" + userId;
     }

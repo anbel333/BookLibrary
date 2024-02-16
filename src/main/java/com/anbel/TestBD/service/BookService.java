@@ -20,7 +20,7 @@ public class BookService {
         bookRepository.deleteById(id);
     }
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return bookRepository.findByTakenByUser(false);
     }
     public Book getBookById(Long id) {
         return bookRepository.findById(id).orElse(null);

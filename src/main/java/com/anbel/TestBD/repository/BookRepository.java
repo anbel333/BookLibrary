@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByUsersId(Long userId);
+
+    List<Book> findByTakenByUser(boolean takenByUser);
 }

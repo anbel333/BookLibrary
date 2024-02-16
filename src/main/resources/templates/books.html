@@ -5,7 +5,7 @@
 </head>
 <body>
 <h2>Книги</h2>
-<a th:href="@{/users}" sec:authorize="hasRole('ADMIN') or hasRole('USER')">Все пользователи</a>
+<a th:href="@{/users}" sec:authorize="hasRole('ADMIN')">Все пользователи</a>
 <a th:href="@{/login}" >Авторизация</a>
 <a th:href="@{/userAccount}" sec:authorize="hasRole('ADMIN') or hasRole('USER')">Личный кабинет</a>
 <a th:href="@{/addBook}" sec:authorize="hasRole('ADMIN')">Добавить книгу</a>
@@ -14,6 +14,7 @@
         <tr>
             <th>Название</th>
             <th>Автор</th>
+            <th>Рейтинг</th>
             <th>Действие</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
         <tr th:each="book : ${books}">
             <td th:text="${book.title}"></td>
             <td th:text="${book.author}"></td>
+            <td th:text="${book.rating}"></td>
             <td>
                 <div sec:authorize="hasRole('ADMIN')">
                     <form th:action="@{/editBook}" method="get">
