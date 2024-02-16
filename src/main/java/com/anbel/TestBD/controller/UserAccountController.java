@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import java.util.List;
 
 @Controller
@@ -26,5 +28,10 @@ public class UserAccountController {
         model.addAttribute("user", user);
         model.addAttribute("userBooks", userBook);
         return "userAccount";
+    }
+    @PostMapping("/returnBook")
+    public String returnBook(Long userId, Long bookId) {
+        bookService.returnBook(userId, bookId);
+        return "redirect:/userAccount?userId=" + userId;
     }
 }

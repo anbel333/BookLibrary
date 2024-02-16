@@ -21,6 +21,13 @@
             <td th:text="${book.title}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.rating}"></td>
+            <td>
+                <form th:action="@{/returnBook}" method="post">
+                    <input type="hidden" name="userId" th:value="${user.id}" />
+                    <input type="hidden" name="bookId" th:value="${book.id}" />
+                    <button type="submit">Return</button>
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>
