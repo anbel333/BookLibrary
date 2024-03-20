@@ -6,7 +6,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @RequiredArgsConstructor
 @Service
@@ -31,10 +30,10 @@ public class BookService {
     public List<Book> getBooksByUserId(Long userId) {
         return bookRepository.findByUsersId(userId);
     }
-    public void returnBook(Long userId, Long bookId) {
+    public Book returnBook(Long userId, Long bookId) {
         Book book = bookRepository.findById(bookId).orElseThrow();
         book.setUsers(null);
         book.setTakenByUser(false);
-        saveBook(book);
+        return bookRepository.save(book);
     }
 }
