@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Account</title>
+</head>
+<body>
+<h1>Добро пожаловать, <span th:text="${user.email}"></span>!</h1>
+<h2>Ваши книги:</h2>
+<table border="1">
+   <thead>
+        <tr>
+            <th>Список книг</th>
+            <th>Автор</th>
+            <th>Рейтинг</th>
+            <th>Удалить</th>
+        </tr>
+   </thead>
+    <tbody>
+        <tr th:each="book : ${userBooks}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.rating}"></td>
+            <td>
+                <form th:action="@{/returnBook}" method="post">
+                    <input type="hidden" name="userId" th:value="${user.id}" />
+                    <input type="hidden" name="bookId" th:value="${book.id}" />
+                    <button type="submit">Return</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

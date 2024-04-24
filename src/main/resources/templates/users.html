@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список пользователей</title>
+</head>
+<body>
+<h2>Список пользователей</h2>
+<a href="/books">Вернуться к списку книг</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Полное имя</th>
+            <th>Email</th>
+            <th>Список книг пользователя</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.fullName}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <form th:action="@{/userBooks}" method="get">
+                    <input type="hidden" th:name="userId" th:value="${user.id}"/>
+                    <button type="submit">Книги</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
